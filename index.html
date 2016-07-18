@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.alert-box {
+			display: none;
+			padding: 10px;
+		}
+		.bg-yellow {
+			overflow: hidden;
+			background-color: rgba(255,192,0,0.5);
+			border-left: 5px solid #ffc000;
+		}
+		.alert-content {float: left;}
+		.close-me {
+			cursor: pointer;
+			float: right;
+			opacity: 0.5;
+			text-decoration: underline;
+		}
+		.clearfix {
+			clear: both;
+		}
+	</style>
+</head>
+<body>
+	<div class="page-wrapper">
+		<div class="alert-box bg-yellow">
+			<div class="alert-content">
+				This is cookies based alert message
+			</div>
+			<span class="close-me">Close Me</span>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<script type="text/javascript" src="src/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="src/jquery-migrate-1.4.1.min.js"></script>
+	<script type="text/javascript" src="src/jquery.cookie.js"></script>
+	<script type="text/javascript">
+		// if no cookie
+		if (!$.cookie('alert')) {
+		    $( ".alert-box" ).show();
+		    $(".close-me").click(function() {
+		        $( ".alert-box" ).slideUp( "slow" );
+		        // set the cookie for 24 hours
+		        var date = new Date();
+		        date.setTime(date.getTime() + 24 * 60 * 60 * 1000); 
+		        $.cookie('alert', true, { expires: date });
+		    });
+		}
+	</script>
+</body>
+</html>
